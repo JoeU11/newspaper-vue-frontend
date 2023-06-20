@@ -18,26 +18,32 @@ const routes = [
   {
     path: '/articles',
     name: 'articlesIndex',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/ArticlesIndex.vue')
+    component: () => import('../views/ArticlesIndex.vue')
   },
   {
     path: '/articles/:id',
     name: 'articlesShow',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/ArticlesShow.vue')
+    component: () => import('../views/ArticlesShow.vue')
   },
   {
     path: '/articles/new',
     name: 'articlesNew',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/ArticlesNew.vue')
+    component: () => import('../views/ArticlesNew.vue')
+  },
+  {
+    path: '/signup',
+    name: 'signup',
+    component: () => import('../views/SignUp.vue')
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('../views/LoginView.vue')
+  },
+  {
+    path: '/logout',
+    name: 'logout',
+    component: () => import('../views/LogoutView.vue')
   }
 ]
 
