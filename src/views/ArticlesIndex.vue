@@ -25,7 +25,9 @@ export default {
 <template>
   <div class="home">
     <div v-for="article in articles">
-      <h2>{{ article.title }}</h2>
+      <a :href="`/articles/${article.id}`">
+        <h2>{{ article.title }}</h2>
+      </a>
       <h3>{{ article.author }}</h3>
       <div v-for="photo in article.photos">
         <img :src="photo.url">
