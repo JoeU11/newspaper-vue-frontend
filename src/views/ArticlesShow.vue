@@ -1,15 +1,22 @@
 <script>
 import axios from 'axios';
+import { ref, watch } from 'vue' // part of watch testing
 
 export default {
   data: function () {
     return {
       article: {},
-      admin: localStorage.getItem("admin") === "true"
+      user: { admin: localStorage.getItem("admin") === "true", premium: localStorage.getItem("premium") === "true" }
+
     };
   },
   created: function () {
     this.getArticle()
+  },
+  watch: {
+    article: function (article) {
+      if (!this.user.premium && article.premium) { document.querySelector("#showPremium").showModal() }
+    }
   },
   methods: {
     getArticle() {
@@ -39,6 +46,9 @@ export default {
         console.log(response.data)
         this.article = response.data
       })
+    },
+    redirectToUpgrade() {
+      // add redirect to upgrade page here
     }
   },
 };
@@ -52,7 +62,16 @@ export default {
       <img :src="photo.url">
     </div>
     <p> {{ article.text }}</p>
-    <div v-if="admin">
+    <dialog id="showPremium">
+      <form method="dialog">
+        <h2>This article is only available to premium members.</h2>
+        <h3>Upgrage to premium?</h3>
+        <button v-on:click="redirectToUpgrade">Yes</button>
+        <button>No</button>
+      </form>
+    </dialog>
+
+    <div v-if="user.admin">
       <button v-on:click="confirmDelete">delete</button>
       <button v-on:click="showUpdate">update</button>
     </div>
@@ -72,6 +91,11 @@ export default {
       </form>
     </dialog>
   </div>
+
+
+  <!-- TESTING ZONE -->
+
+  <!-- END TESTING ZONE -->
 </template>
 
 <style></style>
