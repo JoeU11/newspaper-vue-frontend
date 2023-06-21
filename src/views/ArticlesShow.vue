@@ -4,7 +4,8 @@ import axios from 'axios';
 export default {
   data: function () {
     return {
-      article: {}
+      article: {},
+      admin: localStorage.getItem("admin") === "true"
     };
   },
   created: function () {
@@ -51,7 +52,10 @@ export default {
       <img :src="photo.url">
     </div>
     <p> {{ article.text }}</p>
-    <button v-on:click="confirmDelete">delete</button>
+    <div v-if="admin">
+      <button v-on:click="confirmDelete">delete</button>
+      <button v-on:click="showUpdate">update</button>
+    </div>
     <dialog id="confirmDelete">
       <form method="dialog">
         <p>Are you sure you want to delete?</p>
@@ -59,7 +63,6 @@ export default {
         <button>No, don't delete my article!</button>
       </form>
     </dialog>
-    <button v-on:click="showUpdate">update</button>
     <dialog id="showUpdate">
       <form method="dialog">
         <label>Title: </label><input id="newTitle" type="text" :value="article.title"><br />
