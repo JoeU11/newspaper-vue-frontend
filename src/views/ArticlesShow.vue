@@ -49,6 +49,12 @@ export default {
     },
     redirectToUpgrade() {
       // add redirect to upgrade page here
+    },
+    addFavorite(id) {
+      console.log("adding favorite")
+      axios.post("http://localhost:3000/favorites", { id: id }).then(response => {
+        console.log(response)
+      })
     }
   },
 };
@@ -62,6 +68,7 @@ export default {
       <img :src="photo.url">
     </div>
     <p> {{ article.text }}</p>
+    <button v-on:click="addFavorite(article.id)">Add to Favorites</button>
     <dialog id="showPremium">
       <form method="dialog">
         <h2>This article is only available to premium members.</h2>

@@ -44,6 +44,11 @@ const routes = [
     path: '/logout',
     name: 'logout',
     component: () => import('../views/LogoutView.vue')
+  },
+  {
+    path: '/favorites',
+    name: 'favoriteArticles',
+    component: () => import('../views/FavoriteArticles.vue')
   }
 ]
 
